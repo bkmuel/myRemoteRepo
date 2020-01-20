@@ -21,5 +21,6 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 				<set-payload value="Hello Class" doc:name="Set Payload" doc:id="d0d30cfd-78a3-4e21-bd34-07d810a65eb7" />
 			</otherwise>
 		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="5eaec473-e163-431a-b9b9-cb78ff9fb10e" message="response from choice router #[payload]"/>
 	</flow>
 </mule>
