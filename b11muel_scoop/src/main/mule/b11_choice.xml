@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="8cd04a8b-908f-4332-aa70-694885535c0e" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="b11_choiceFlow" doc:id="200d062e-5385-41f1-b5b5-056c6c1a4a7b" >
+		<http:listener doc:id="2c0e6a68-c351-45bf-a2d7-1c07f50ba728" config-ref="HTTP_Listener_config1" path="/choice"/>
+		<choice doc:name="Choice" doc:id="c04e9929-b4df-4241-9f13-c053c775feb0" >
+			<when expression="#[attributes.queryParams.language=='am']" doc:id="b0c49580-f212-4f8e-9fdc-4a2acb753eff">
+				<set-payload value="Selam" doc:name="Set Payload" doc:id="8d681a92-037e-4865-8ed5-3dc944300847" />
+			</when>
+			<when expression="#[attributes.queryParams.language=='sp']">
+				<set-payload value="Hola" doc:name="Set Payload" doc:id="87d48123-a26d-4357-a129-18b06b7da9cd" />
+			</when>
+			<otherwise >
+				<set-payload value="Hello Class" doc:name="Set Payload" doc:id="d0d30cfd-78a3-4e21-bd34-07d810a65eb7" />
+			</otherwise>
+		</choice>
+	</flow>
+</mule>
